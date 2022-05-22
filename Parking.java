@@ -30,12 +30,17 @@ public class Parking{
 
   public int park(String registration_number,int age){
     Car car=new Car(registration_number,age);
+    boolean full=true;                                 //to check weather parking lot is full or not
 
     for(int i=0;i<arr.length;i++){
-      if(!arr[i]){   //arr[i] will be false if that slot is empty
+      if(!arr[i]){                                      //arr[i] will be false if that slot is empty
+        full=false;
         arr[i]=true;
-        car.allocated_slot=i+1;   //allocated slot will be from 1 to n
+        car.allocated_slot=i+1;                         //allocated slot will be from 1 to n
         break;
+      }
+      if(full){                                         //edge case: if parking lot is full
+        System.out.println("Parking is full");
       }
     }
     reg_slot_map.put(car.registration_number,car.allocated_slot);
