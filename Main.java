@@ -3,8 +3,6 @@ import java.util.Scanner;
 
 class Main {
   public static void main(String[] args) throws Exception {
-    //Parking parking= Parking.createParking(6);
-    //arking.createCar("ABCKSDH",23);
     Parking  parking;
     File file = new File("input.txt");
     Scanner sc = new Scanner(file);
@@ -12,6 +10,10 @@ class Main {
     String[] splited = command.split(" ");
     if(!splited[0].equals("Create_parking_lot")){        //edge case: If first input is not for create parking
       System.out.println("First create the parking system properly");
+      System.exit(0);
+    }
+    if(Integer.parseInt(splited[1])>1000){               //edge case: If parking slots are greater than 1000
+      System.out.println("The parking lot with more than 1000 slots are not possible to create");
       System.exit(0);
     }
     
@@ -25,18 +27,15 @@ class Main {
        
         case "Park":
          
-           if(splited[1].length()!=13 &&  Integer.parseInt(splited[3])>=1000){     //edge cses: if age or registration numbers entered are not valid
+           if(splited[1].length()!=13 &&  Integer.parseInt(splited[3])>1000){     //edge cses: if age or registration numbers entered are not valid
             System.out.println("Please enter valid registration number and age" );
-            System.exit(0);
           }
           else if(splited[1].length()!=13){
             System.out.println("Please enter valid registration number" );
-            System.exit(0);
           
           }
           else if(Integer.parseInt(splited[3])>=1000){
             System.out.println("Please enter valid age" );
-            System.exit(0);
           }
           parking.park(splited[1],Integer.parseInt(splited[3]));
           break;
@@ -59,7 +58,6 @@ class Main {
           
         default:
           System.out.println("Invalid command");
-          System.exit(0);
           break;
               
   }

@@ -1,8 +1,8 @@
 import java.util.*;
 
- //As only one object of this class needs to be created we can use Singleton design pattern
+//As only one object of this class needs to be created, have used Singleton design pattern
 public class Parking{
-  int slots;
+  int slots;                  //total number of slots
   private static Parking instance;
   public boolean arr[];
   public HashMap<String,Integer> reg_slot_map = new HashMap<String,Integer>();
@@ -21,7 +21,7 @@ public class Parking{
     if(instance==null){
     instance= new Parking(slots);
       }
-    System.out.println("Craeted parking of "+slots+" slots");
+    System.out.println("Created parking of "+slots+" slots");
     return instance;
   }
 
@@ -39,11 +39,12 @@ public class Parking{
         car.allocated_slot=i+1;                         //allocated slot will be from 1 to n
         break;
       }
+      }
       if(full){                                         //edge case: if parking lot is full
         System.out.println("Parking is full");
       }
-    }
-    reg_slot_map.put(car.registration_number,car.allocated_slot);
+    
+    reg_slot_map.put(car.registration_number,car.allocated_slot);      //add all values corresponding to this car in maps
     slot_car_map.put(car.allocated_slot, car);
     if(age_reg_map.get(car.age)==null){
       age_reg_map.put(car.age,new ArrayList<String>());
@@ -129,9 +130,9 @@ public class Parking{
     
     reg_slot_map.remove(car.registration_number);
     
-    List<String> list2 = age_reg_map.get(car.age);  //edge case: If after removing element from list, list size is 0
+    List<String> list2 = age_reg_map.get(car.age);  
     list2.remove(car.registration_number);
-    if(list2.size()==0){
+    if(list2.size()==0){            //edge case: If after removing element from list, list size is 0
       age_reg_map.remove(car.age);
     }
     
