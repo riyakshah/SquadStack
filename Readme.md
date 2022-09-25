@@ -10,7 +10,7 @@ Features
 
 createParking(int slots)  - Create Parking system with given number of slots
 
-park(String registration_number,int age) - Creates car object, finds the nearest empty slot ans assigns to the car
+park(String registration_number,int age) - Creates car object, finds the nearest empty slot and assigns to the car
 
 printTicket(String registration_number,int allocated_slot) - It prints to console (to emulate real life print ticket function)
 
